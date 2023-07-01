@@ -1,10 +1,16 @@
 import type { PageLoad } from "./$types";
 
-export const load = (({ params }) => {
+export const load = (async ({ params }) => {
+    let json_data: null | {
+        default: {};
+    };
+    try {
+        json_data = await import(`../../../server/anime/${params.id}.json`);
+    } catch (e) {
+        json_data = null;
+    }
+
     return {
-        post: {
-            title: `Title for ${params.slug} goes here`,
-            content: `Content for ${params.slug} goes here`
-        }
+        data: json_data?.default
     };
 }) satisfies PageLoad;

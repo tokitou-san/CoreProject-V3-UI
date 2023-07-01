@@ -6,10 +6,13 @@
     import { OpengraphGenerator } from "$functions/opengraph";
     import TopRounded from "$icons/top_rounded.svelte";
 
+    import type { PageData } from "./$types";
+
+    export let data: PageData;
     let anime_id = Number($page.params.id);
 
     let anime = anime_list?.find((anime) => anime.id === anime_id);
-
+    console.log(data.data);
     const opengraph_html = new OpengraphGenerator({
         title: `Watch ${anime?.name} on AnimeCore`,
         url: $page.url.href,
