@@ -2,11 +2,10 @@
     import Chevron from "$icons/chevron.svelte";
 </script>
 
-<section class="relative grid h-full grid-cols-5 items-end justify-between md:px-[5vw]">
-    <div
-        class="pointer-events-none absolute inset-0 z-10"
-        style="background-image: linear-gradient(to top left, rgba(117, 105, 225, 0.1) 0%, transparent 50%);"
-    />
+<section
+    class="relative grid h-full grid-cols-5 items-end justify-between md:px-[5vw]"
+    style="background-image: linear-gradient(to top left, rgba(117, 105, 225, 0.1) 0%, transparent 50%);"
+>
     <error-context class="col-span-12 flex flex-col items-center leading-none md:col-span-3 md:mb-[12vw] md:items-start md:gap-[1vw]">
         <status-code class="text-7xl font-bold md:text-[7vw]">
             {#each "404".split("") as number}
