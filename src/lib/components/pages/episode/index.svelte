@@ -2,6 +2,7 @@
     import ForumPosts from "$components/shared/forum_posts.svelte";
     import ImageLoader from "$components/shared/image/image_loader.svelte";
     import Markdown from "$components/shared/markdown.svelte";
+    import ScrollArea from "$components/shared/scroll_area.svelte";
     import TextEditor from "$components/shared/text_editor.svelte";
     import { episode_comments } from "$data/mock/episode_comments";
     import { forum_posts } from "$data/mock/forum_posts";
@@ -65,7 +66,7 @@
     };
 </script>
 
-<episode-container class="block md:py-[2vw] md:pl-[1vw] md:pr-[3.75vw]">
+<episode-container class="flex flex-col md:gap-[3.5vw] md:py-[2vw] md:pl-[1vw] md:pr-[3.75vw]">
     <episode-content class="grid grid-cols-12 md:gap-[5vw]">
         <video-player class="col-span-12 flex flex-col md:col-span-8 md:gap-[0.75vw]">
             <player class="h-64 w-full md:h-[35vw]">
@@ -146,59 +147,112 @@
                 </div>
             </video-player-options>
         </video-player>
-        <episode-info class="col-span-12 flex flex-col gap-10 p-5 md:col-span-4 md:justify-between md:gap-0 md:p-0">
-            <episodes-container class="flex flex-col justify-between gap-3 md:gap-[1.5vw]">
-                <header class="flex items-center justify-between">
-                    <span class="font-semibold md:text-[1.35vw]">Episodes</span>
-                    <button class="btn flex items-center gap-2 rounded bg-surface-400 px-3 py-2 text-xs font-semibold leading-none md:gap-[0.5vw] md:rounded-[0.35vw] md:px-[0.75vw] md:py-[0.5vw] md:text-[1vw]">
-                        EPS: 1 - 20
-                        <Chevron class="w-3 md:w-[1vw]" />
-                    </button>
-                </header>
+        <episode-info class="col-span-12 flex flex-col gap-10 p-5 md:col-span-4 md:gap-[1.5vw] md:p-0">
+            <header class="flex items-center justify-between">
+                <span class="font-semibold md:text-[1.35vw]">Episodes</span>
+                <button class="btn flex items-center gap-2 rounded bg-surface-400 px-3 py-2 text-xs font-semibold leading-none md:gap-[0.5vw] md:rounded-[0.35vw] md:px-[0.75vw] md:py-[0.5vw] md:text-[1vw]">
+                    EPS: 1 - 60
+                    <Chevron class="w-3 md:w-[1vw]" />
+                </button>
+            </header>
 
-                <episodes class="grid grid-cols-6 gap-2 md:gap-[0.75vw]">
-                    {#each Array(30) as item, index}
-                        {@const actual_index = index + 1}
-                        {@const button_active = actual_index === episode_number}
-                        <a
-                            href="./{actual_index}"
-                            class="{button_active ? 'bg-primary-500' : 'bg-surface-400'} unstyled btn rounded py-3 text-sm font-semibold leading-none md:rounded-[0.35vw] md:py-[0.75vw] md:text-[1.2vw]"
-                        >
-                            {actual_index}
-                        </a>
-                    {/each}
-                </episodes>
-            </episodes-container>
-            <episode-detail class="relative flex items-end md:gap-[1.5vw]">
-                <anime-banner class="relative h-72 w-full md:h-[13vw] md:w-[9vw] md:flex-shrink-0">
-                    <ImageLoader
-                        class="h-full w-full rounded-lg object-cover object-center md:rounded-[0.5vw]"
-                        src="/images/DemonSlayer-bg.avif"
-                        alt="Demon Slayer"
-                    />
-                    <overlay-gradient class="absolute inset-0 bg-gradient-to-t from-surface-900/75 to-surface-900/50 md:from-surface-900/50 md:to-surface-900/25" />
-                </anime-banner>
-                <episode-main-detail class="absolute bottom-0 flex flex-col p-5 leading-none md:static md:gap-[0.25vw] md:p-0">
-                    <anime-title class="text-xl font-bold duration-300 ease-in-out scrollbar-none md:h-auto md:max-h-[1.75vw] md:overflow-hidden md:text-[1.5vw] md:leading-[1.75vw] md:text-surface-50 md:hover:max-h-[5vw] md:hover:overflow-y-scroll md:hover:scrollbar-thin">Deamon Slayer</anime-title>
-
-                    <span class="text-base text-surface-50 md:text-[1vw] md:leading-none">currently watching</span>
-                    <span class="text-base font-semibold md:my-[0.5vw] md:text-[1.25vw] md:leading-none">Episode: {episode_number}</span>
-
-                    <episode-name class="text-sm duration-300 ease-in-out scrollbar-none md:h-auto md:max-h-[2.5vw] md:overflow-hidden md:text-[1vw] md:leading-[1.25vw] md:text-surface-50 md:hover:max-h-[5vw] md:hover:overflow-y-scroll md:hover:scrollbar-thin">A Connected Bond: Daybreak and First Light</episode-name>
-
-                    <button
-                        type="button"
-                        class="btn mt-2 flex w-max items-center gap-0 rounded-md bg-primary-600 px-3 font-bold text-white md:mt-[1vw] md:h-[3vw] md:w-full md:gap-[0.5vw] md:rounded-[0.5vw] md:p-0"
+            <episodes class="grid grid-cols-6 gap-2 md:gap-[0.75vw]">
+                {#each Array(60) as item, index}
+                    {@const actual_index = index + 1}
+                    {@const button_active = actual_index === episode_number}
+                    <a
+                        href="./{actual_index}"
+                        class="{button_active ? 'bg-primary-500' : 'bg-surface-400'} unstyled btn rounded py-3 text-sm font-semibold leading-none md:rounded-[0.35vw] md:py-[0.75vw] md:text-[1.2vw]"
                     >
-                        <span class="text-sm md:text-[1.1vw]">More Details</span>
-                        <Chevron class="w-5 -rotate-90 md:w-[1.25vw]" />
-                    </button>
-                </episode-main-detail>
-            </episode-detail>
+                        {actual_index}
+                    </a>
+                {/each}
+            </episodes>
         </episode-info>
     </episode-content>
 
-    <episode-media class="grid grid-cols-12 p-5 md:mt-[5vw] md:gap-[5vw] md:p-0">
+    <episode-details class="flex gap-5 p-5 md:gap-[1.5vw] md:p-0">
+        <anime-cover class="h-40 w-[25%] md:h-[15vw] md:w-[12%]">
+            <ImageLoader
+                src="/images/DemonSlayer-cover.avif"
+                alt="Demon Slayer"
+                class="h-full w-full rounded-lg object-cover md:rounded-[0.5vw]"
+            />
+        </anime-cover>
+        <episode-info class="flex w-[75%] flex-col md:w-[88%]">
+            <episode-name class="text-base text-warning-300 md:text-[1.25vw] md:leading-[1vw]">Monotone/Colorful</episode-name>
+            <episode-number class="text-sm text-surface-50 md:mt-[0.5vw] md:text-[1vw] md:leading-[1vw]">Episdoe: {episode_number}</episode-number>
+            <ScrollArea
+                gradientMask
+                parentClass="md:mt-[1vw] mt-3"
+                offsetScrollbar
+                class="max-h-28 text-sm leading-snug text-surface-200 md:max-h-[8vw] md:text-[1vw] md:leading-[1.25vw]"
+            >
+                The autumn he was twelve, piano prodigy Kousei Arima suddenly found himself unable to play the piano after his mother's death. Ever since then, it's like he's been frozen in time. His childhood friend, Tsubaki Sawabe, watches over him with concern; one day, she invites him on a double date. Kousei's other childhood friend, Ryouta Watari, is being introduced to a certain girl.
+                Kousei reluctantly heads over to the rendezvous spot. There, he sees a girl playing a melodica. This girl, who allegedly has a crush on Watari, is Kaori Miyazono. And she turns out to be a violinist! The autumn he was twelve, piano prodigy Kousei Arima suddenly found himself unable to play the piano after his mother's death. Ever since then, it's like he's been frozen in time. His
+                childhood friend, Tsubaki Sawabe, watches over him with concern; one day, she invites him on a double date. Kousei's other childhood friend, Ryouta Watari, is being introduced to a certain girl. Kousei reluctantly heads over to the rendezvous spot. There, he sees a girl playing a melodica. This girl, who allegedly has a crush on Watari, is Kaori Miyazono. And she turns out to be a
+                violinist!
+            </ScrollArea>
+            <a
+                href="/mal/1"
+                class="btn mt-5 w-max rounded-md bg-primary-500 py-3 text-sm font-semibold leading-none md:mt-[1.25vw] md:rounded-[0.5vw] md:py-[0.9vw] md:text-[1vw]"
+            >
+                <span>View detail</span>
+                <Chevron class="w-3 -rotate-90 md:w-[1vw]" />
+            </a>
+        </episode-info>
+    </episode-details>
+
+    <!-- [
+  {
+    "id": 13,
+    "episode_number": 1,
+    "episode_name": "Monotone/Colorful",
+    "episode_thumbnail": "/media/thumbnail/9cecea29-a95f-4767-8351-009adbeebb0a.jpg",
+    "episode_summary": "The autumn he was twelve, piano prodigy Kousei Arima suddenly found himself unable to play the piano after his mother's death. Ever since then, it's like he's been frozen in time. His childhood friend, Tsubaki Sawabe, watches over him with concern; one day, she invites him on a double date. Kousei's other childhood friend, Ryouta Watari, is being introduced to a certain girl. Kousei reluctantly heads over to the rendezvous spot. There, he sees a girl playing a melodica. This girl, who allegedly has a crush on Watari, is Kaori Miyazono. And she turns out to be a violinist!",
+    "episode_length": 1382,
+    "episode_type": "",
+    "providers": {
+      "streamsb": "joe5qmj20qfk"
+    },
+    "episode_comments": [],
+    "episode_timestamps": []
+  },
+  {
+    "id": 15,
+    "episode_number": 2,
+    "episode_name": "Friend A",
+    "episode_thumbnail": "/media/thumbnail/5be5c969-7f62-4749-ab73-d0ee0acce811.jpg",
+    "episode_summary": "With Kousei Arima and the others in tow, Kaori Miyazono heads for the concert hall, where a violin competition is being held. Kousei breathes in the nostalgic scent of the hall. Many in the audience recognize Kousei as the boy once known as a piano prodigy. The competition starts, and the auditorium is filled with tension. The fourth contestant that came on the stage was Kaori. Her performance of the Kreutzer Sonata is completely different than that of the other contestants. Ignoring what the sheet music calls for, she makes the piece uniquely her own. She is beautiful in this endeavor. Afterwards, she runs toward Ryouta Watari. It's like a scene out of a movie. Observing the hero and heroine from the sidelines, Kousei is struck by the feeling that he's playing the role of \"Friend A.\"\r\n\r\n(Source: Wikipedia)",
+    "episode_length": 1372,
+    "episode_type": "",
+    "providers": {
+      "streamsb": "5sgknipf5si7"
+    },
+    "episode_comments": [],
+    "episode_timestamps": []
+  },
+  {
+    "id": 17,
+    "episode_number": 3,
+    "episode_name": "Inside Spring",
+    "episode_thumbnail": "/media/thumbnail/1172acde-5e5f-4d43-a5fd-32702898a719.jpg",
+    "episode_summary": "On his way home from school, Kousei Arima runs into Kaori Miyazono, and he goes with her to a café as Ryouta Watari's substitute. Kaori is thrilled with her plate of delicious waffles. There's an old upright piano in the café, and some kids are attempting to play Twinkle, Twinkle, Little Star on it. Kaori orders Kousei to perform, and the sound of his playing soon resonates around the café. But then suddenly, he stops. Kousei begins to lose his ability to hear the sound of the piano once he starts concentrating. It is then that Kaori appoints Kousei to be her accompanist. By claiming the audience's nomination, Kaori is slated to compete in the second round of the preliminaries.\r\n\r\n(Source: Official site)",
+    "episode_length": 1380,
+    "episode_type": "sub",
+    "providers": {
+      "streamsb": "pje7hj8hid2y"
+    },
+    "episode_comments": [],
+    "episode_timestamps": []
+  },
+  {
+    "id": 18,
+    "episode_number": 4,
+    "episode_name": "The Journey",
+    "episode_thumbnail": "/media/thumbnail/d2531966-737c-49dd-9b2b-de5e09c4ab1f.jpg", -->
+
+    <episode-media class="grid grid-cols-12 p-5 md:gap-[5vw] md:p-0">
         <comments-section class="col-span-12 flex flex-col md:col-span-7 md:gap-[0.75vw]">
             <span class="flex gap-2 border-b-2 border-surface-50/25 pb-1 text-base font-semibold md:gap-[0.75vw] md:border-none md:pb-0 md:text-[1.25vw] md:leading-[1.5vw]">Comments</span>
 
