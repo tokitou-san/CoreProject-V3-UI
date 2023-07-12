@@ -15,9 +15,14 @@
     import Next from "$icons/next.svelte";
     import Warning from "$icons/warning.svelte";
     import type { SvelteComponent } from "svelte";
+    import { blur } from "svelte/transition";
     import tippy from "tippy.js";
 
     export let episode_number: number | undefined;
+
+    const toggle_lights = () => {
+        button_state_mapping.lights = !button_state_mapping.lights;
+    };
 
     const button_state_mapping: { [key: string]: boolean } = {
         lights: false
@@ -65,15 +70,24 @@
     };
 </script>
 
-<episode-container class="block md:py-[2vw] md:pl-[1vw] md:pr-[3.75vw]">
+{#if button_state_mapping.lights}
+    <lights_overlay
+        transition:blur={{ duration: 300 }}
+        role="presentation"
+        class="absolute inset-0 z-20 bg-black/95"
+        on:mousedown={toggle_lights}
+    />
+{/if}
+
+<episode-container class="mt-20 block md:mt-0 md:py-[2vw] md:pl-[1vw] md:pr-[3.75vw]">
     <episode-content class="grid grid-cols-12 md:gap-[5vw]">
         <video-player class="col-span-12 flex flex-col md:col-span-8 md:gap-[0.75vw]">
-            <player class="h-64 w-full md:h-[35vw]">
+            <player class="relative h-64 w-full md:z-30 md:h-[35vw]">
                 <!-- adding a image for now -->
                 <ImageLoader
                     src="/images/DemonSlayer-episode.webp"
                     alt="Episode image"
-                    class="h-full w-full rounded-none object-cover md:rounded-[0.5vw]"
+                    class="h-full w-full rounded-none object-cover md:rounded-[0.5vw] "
                 />
             </player>
             <video-player-options class="flex flex-col gap-2 p-5 md:flex-row md:items-center md:justify-between md:gap-0 md:p-0">
@@ -91,10 +105,8 @@
                         {@const enabled = button_state_mapping[item[0]]}
 
                         <button
-                            class="btn flex items-center p-0 text-xs leading-none md:text-[0.9vw]"
-                            on:click={() => {
-                                button_state_mapping[item[0]] = !button_state_mapping[item[0]];
-                            }}
+                            class="btn hidden items-center p-0 text-xs leading-none md:flex md:text-[0.9vw]"
+                            on:click={toggle_lights}
                         >
                             <span>{text}:</span>
                             {#if enabled}
