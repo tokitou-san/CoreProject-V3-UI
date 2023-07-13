@@ -2,7 +2,6 @@
     import ForumPosts from "$components/shared/forum_posts.svelte";
     import ImageLoader from "$components/shared/image/image_loader.svelte";
     import Markdown from "$components/shared/markdown.svelte";
-    import ScrollArea from "$components/shared/scroll_area.svelte";
     import TextEditor from "$components/shared/text_editor.svelte";
     import { episode_comments } from "$data/mock/episode_comments";
     import { forum_posts } from "$data/mock/forum_posts";
@@ -14,11 +13,14 @@
     import Filter from "$icons/filter.svelte";
     import Heart from "$icons/heart.svelte";
     import Next from "$icons/next.svelte";
+    import PlayCircle from "$icons/play_circle.svelte";
+    import Share from "$icons/share.svelte";
     import Warning from "$icons/warning.svelte";
+    import { Accordion, AccordionItem } from "@skeletonlabs/skeleton";
     import type { SvelteComponent } from "svelte";
     import tippy from "tippy.js";
 
-    export let episode_number: number | undefined;
+    export let episode_number: number;
 
     const button_state_mapping: { [key: string]: boolean } = {
         lights: false
@@ -171,36 +173,78 @@
         </episode-info>
     </episode-content>
 
-    <episode-details class="flex gap-5 p-5 md:gap-[1.5vw] md:p-0">
-        <anime-cover class="h-40 w-[25%] md:h-[15vw] md:w-[12%]">
-            <ImageLoader
-                src="/images/DemonSlayer-cover.avif"
-                alt="Demon Slayer"
-                class="h-full w-full rounded-lg object-cover md:rounded-[0.5vw]"
-            />
-        </anime-cover>
-        <episode-info class="flex w-[75%] flex-col md:w-[88%]">
-            <episode-name class="text-base text-warning-300 md:text-[1.25vw] md:leading-[1vw]">Monotone/Colorful</episode-name>
-            <episode-number class="text-sm text-surface-50 md:mt-[0.5vw] md:text-[1vw] md:leading-[1vw]">Episdoe: {episode_number}</episode-number>
-            <ScrollArea
-                gradientMask
-                parentClass="md:mt-[1vw] mt-3"
-                offsetScrollbar
-                class="max-h-28 text-sm leading-snug text-surface-200 md:max-h-[8vw] md:text-[1vw] md:leading-[1.25vw]"
+    <episode-details class="grid grid-cols-12 gap-5 p-5 md:gap-[5vw] md:p-0">
+        <episode-info class="col-span-8 flex flex-col md:gap-[1vw]">
+            <anime-name-options class="flex items-center justify-between">
+                <div>
+                    <a
+                        href="/mal/1"
+                        class="unstyled flex flex-col leading-none md:gap-[0.25vw] md:text-[1.1vw]"
+                    >
+                        <span class="font-semibold uppercase">Demon Slayer S1</span>
+                        <span class="text-surface-50 md:text-[1vw]">Kimetsu yo yaika</span>
+                    </a>
+                </div>
+                <options>
+                    <button class="btn bg-transparent p-0">
+                        <Share class="md:w-[1.25vw]" />
+                    </button>
+                </options>
+            </anime-name-options>
+            <Accordion
+                padding="p-0"
+                hover="bg-transparent"
+                duration={300}
             >
-                The autumn he was twelve, piano prodigy Kousei Arima suddenly found himself unable to play the piano after his mother's death. Ever since then, it's like he's been frozen in time. His childhood friend, Tsubaki Sawabe, watches over him with concern; one day, she invites him on a double date. Kousei's other childhood friend, Ryouta Watari, is being introduced to a certain girl.
-                Kousei reluctantly heads over to the rendezvous spot. There, he sees a girl playing a melodica. This girl, who allegedly has a crush on Watari, is Kaori Miyazono. And she turns out to be a violinist! The autumn he was twelve, piano prodigy Kousei Arima suddenly found himself unable to play the piano after his mother's death. Ever since then, it's like he's been frozen in time. His
-                childhood friend, Tsubaki Sawabe, watches over him with concern; one day, she invites him on a double date. Kousei's other childhood friend, Ryouta Watari, is being introduced to a certain girl. Kousei reluctantly heads over to the rendezvous spot. There, he sees a girl playing a melodica. This girl, who allegedly has a crush on Watari, is Kaori Miyazono. And she turns out to be a
-                violinist!
-            </ScrollArea>
+                <AccordionItem
+                    open
+                    regionPanel="text-surface-50 md:text-[1vw] md:leading-[1.35vw]"
+                    regionControl="text-base text-warning-400 font-semibold md:text-[1.25vw] md:leading-[1vw] md:pb-[1vw]"
+                    regionCaret="md:w-[1vw]"
+                >
+                    <svelte:fragment slot="lead">EP{episode_number}</svelte:fragment>
+                    <svelte:fragment slot="summary">Monotone/Colorful</svelte:fragment>
+                    <svelte:fragment slot="content">
+                        The autumn he was twelve, piano prodigy Kousei Arima suddenly found himself unable to play the piano after his mother's death. Ever since then, it's like he's been frozen in time. His childhood friend, Tsubaki Sawabe, watches over him with concern; one day, she invites him on a double date. Kousei's other childhood friend, Ryouta Watari, is being introduced to a certain
+                        girl. Kousei reluctantly heads over to the rendezvous spot. There, he sees a girl playing a melodica. This girl, who allegedly has a crush on Watari, is Kaori Miyazono. And she turns out to be a violinist!
+                    </svelte:fragment>
+                </AccordionItem>
+            </Accordion>
             <a
                 href="/mal/1"
-                class="btn mt-5 w-max rounded-md bg-primary-500 py-3 text-sm font-semibold leading-none md:mt-[1.25vw] md:rounded-[0.5vw] md:py-[0.9vw] md:text-[1vw]"
+                class="btn w-max rounded-md bg-primary-500 py-3 text-sm font-semibold leading-none md:rounded-[0.5vw] md:py-[0.9vw] md:text-[1vw]"
             >
                 <span>View detail</span>
                 <Chevron class="w-3 -rotate-90 md:w-[1vw]" />
             </a>
         </episode-info>
+        <next-episode class="col-span-4">
+            <span class="font-semibold uppercase md:text-[1.1vw]">next episode</span>
+            <a
+                href="./{episode_number + 1}"
+                class="unstyled flex md:mt-[0.75vw] md:gap-[1vw]"
+            >
+                <episode-cover class="relative">
+                    <ImageLoader
+                        src="/images/episodes/hyouka/Hyouka-ep-6.avif"
+                        class="md:w-[12vw] md:rounded-[0.25vw]"
+                    />
+                    <overlay class="absolute inset-0 flex items-center justify-center bg-surface-900/40">
+                        <play class="rounded-full bg-surface-900/50 md:p-[1vw]">
+                            <PlayCircle class="md:w-[1.25vw]" />
+                        </play>
+                    </overlay>
+                </episode-cover>
+                <episode-info class="flex flex-col justify-between leading-none md:py-[1vw]">
+                    <div class="flex flex-col md:gap-[0.5vw]">
+                        <span class="text-warning-200 md:text-[1.1vw]">Finally they met</span>
+                        <span class="md:text-[1vw]">Episode - {episode_number + 1}</span>
+                    </div>
+
+                    <span class="text-surface-50 md:text-[1vw]">23 min</span>
+                </episode-info>
+            </a>
+        </next-episode>
     </episode-details>
 
     <episode-media class="grid grid-cols-12 p-5 md:gap-[5vw] md:p-0">
