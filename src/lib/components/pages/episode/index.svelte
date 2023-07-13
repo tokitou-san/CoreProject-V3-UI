@@ -203,55 +203,6 @@
         </episode-info>
     </episode-details>
 
-    <!-- [
-  {
-    "id": 13,
-    "episode_number": 1,
-    "episode_name": "Monotone/Colorful",
-    "episode_thumbnail": "/media/thumbnail/9cecea29-a95f-4767-8351-009adbeebb0a.jpg",
-    "episode_summary": "The autumn he was twelve, piano prodigy Kousei Arima suddenly found himself unable to play the piano after his mother's death. Ever since then, it's like he's been frozen in time. His childhood friend, Tsubaki Sawabe, watches over him with concern; one day, she invites him on a double date. Kousei's other childhood friend, Ryouta Watari, is being introduced to a certain girl. Kousei reluctantly heads over to the rendezvous spot. There, he sees a girl playing a melodica. This girl, who allegedly has a crush on Watari, is Kaori Miyazono. And she turns out to be a violinist!",
-    "episode_length": 1382,
-    "episode_type": "",
-    "providers": {
-      "streamsb": "joe5qmj20qfk"
-    },
-    "episode_comments": [],
-    "episode_timestamps": []
-  },
-  {
-    "id": 15,
-    "episode_number": 2,
-    "episode_name": "Friend A",
-    "episode_thumbnail": "/media/thumbnail/5be5c969-7f62-4749-ab73-d0ee0acce811.jpg",
-    "episode_summary": "With Kousei Arima and the others in tow, Kaori Miyazono heads for the concert hall, where a violin competition is being held. Kousei breathes in the nostalgic scent of the hall. Many in the audience recognize Kousei as the boy once known as a piano prodigy. The competition starts, and the auditorium is filled with tension. The fourth contestant that came on the stage was Kaori. Her performance of the Kreutzer Sonata is completely different than that of the other contestants. Ignoring what the sheet music calls for, she makes the piece uniquely her own. She is beautiful in this endeavor. Afterwards, she runs toward Ryouta Watari. It's like a scene out of a movie. Observing the hero and heroine from the sidelines, Kousei is struck by the feeling that he's playing the role of \"Friend A.\"\r\n\r\n(Source: Wikipedia)",
-    "episode_length": 1372,
-    "episode_type": "",
-    "providers": {
-      "streamsb": "5sgknipf5si7"
-    },
-    "episode_comments": [],
-    "episode_timestamps": []
-  },
-  {
-    "id": 17,
-    "episode_number": 3,
-    "episode_name": "Inside Spring",
-    "episode_thumbnail": "/media/thumbnail/1172acde-5e5f-4d43-a5fd-32702898a719.jpg",
-    "episode_summary": "On his way home from school, Kousei Arima runs into Kaori Miyazono, and he goes with her to a café as Ryouta Watari's substitute. Kaori is thrilled with her plate of delicious waffles. There's an old upright piano in the café, and some kids are attempting to play Twinkle, Twinkle, Little Star on it. Kaori orders Kousei to perform, and the sound of his playing soon resonates around the café. But then suddenly, he stops. Kousei begins to lose his ability to hear the sound of the piano once he starts concentrating. It is then that Kaori appoints Kousei to be her accompanist. By claiming the audience's nomination, Kaori is slated to compete in the second round of the preliminaries.\r\n\r\n(Source: Official site)",
-    "episode_length": 1380,
-    "episode_type": "sub",
-    "providers": {
-      "streamsb": "pje7hj8hid2y"
-    },
-    "episode_comments": [],
-    "episode_timestamps": []
-  },
-  {
-    "id": 18,
-    "episode_number": 4,
-    "episode_name": "The Journey",
-    "episode_thumbnail": "/media/thumbnail/d2531966-737c-49dd-9b2b-de5e09c4ab1f.jpg", -->
-
     <episode-media class="grid grid-cols-12 p-5 md:gap-[5vw] md:p-0">
         <comments-section class="col-span-12 flex flex-col md:col-span-7 md:gap-[0.75vw]">
             <span class="flex gap-2 border-b-2 border-surface-50/25 pb-1 text-base font-semibold md:gap-[0.75vw] md:border-none md:pb-0 md:text-[1.25vw] md:leading-[1.5vw]">Comments</span>
